@@ -1,6 +1,8 @@
 var mongo = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/learnyoumongo';
 
+var age = process.argv[2]
+
 mongo.connect(url, function(err, db) {
   if (err) {
 		console.log('Error connecting');
@@ -8,11 +10,11 @@ mongo.connect(url, function(err, db) {
 
   var database = db.db('learnyoumongo');
 
-  database.collection("users").update({username: 'tinatime'}, {$set: {age: 40 } }
-  	, function(err, data) {
+  database.collection('parrots').count({age: {$gt: +age} }, function(err, count) {
     if (err) {
 			console.log('Error reading');
 		}
+    console.log(count);
     db.close();
   });
 });

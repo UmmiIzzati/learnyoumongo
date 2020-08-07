@@ -15,7 +15,6 @@ mongo.connect(url, function(err, db) {
     if (err) {
 			console.log('Error reading');
 		}
-    console.log(JSON.stringify(myObj));
     db.close();
   });
 });
